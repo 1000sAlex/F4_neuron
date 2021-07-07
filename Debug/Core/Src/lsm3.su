@@ -1,0 +1,7 @@
+lsm3.c:30:6:SPI_send	0	static
+lsm3.c:41:6:SPI_read	0	static
+lsm3.c:53:6:SPI_wait	0	static
+lsm3.c:59:6:LIS3DSH_Write	32	static
+lsm3.c:14:6:LIS3DSH_init	16	static
+lsm3.c:74:6:LIS3DSH_Read	32	static
+lsm3.c:25:6:LIS3DSH_GetDataRaw	0	static
