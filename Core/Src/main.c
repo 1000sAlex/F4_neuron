@@ -39,7 +39,7 @@ float aiOutData[AI_NETWORK_OUT_1_SIZE];
 uint8_t activations[AI_NETWORK_DATA_ACTIVATIONS_SIZE];
 const char *activities[AI_NETWORK_OUT_1_SIZE] =
     {
-    "stable", "walk", "run"
+    "stable", "walk", "run", "shake"
     };
 static void AI_Init(ai_handle w_addr, ai_handle act_addr);
 static void AI_Run(float *pIn, float *pOut);
@@ -150,9 +150,9 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 //	HAL_UART_Transmit(&huart2, (u8*) &raw, sizeof(raw), 0xFFFF);
 //	printf("% 5d, % 5d, % 5d\r\n", raw.x, raw.y, raw.z);
 	/* Note: window overlapping can be managed here */
-	aiInData[write_index + 0] = (float) raw.x / 32000.0f;
-	aiInData[write_index + 1] = (float) raw.y / 32000.0f;
-	aiInData[write_index + 2] = (float) raw.z / 32000.0f;
+	aiInData[write_index + 0] = (float) raw.x / (1.7f * 4000.0f);
+	aiInData[write_index + 1] = (float) raw.y / (1.7f * 4000.0f);
+	aiInData[write_index + 2] = (float) raw.z / (1.7f * 4000.0f);
 	write_index += 3;
 
 	if (write_index == AI_NETWORK_IN_1_SIZE)
@@ -167,15 +167,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	    AI_Run(aiInData, aiOutData);
 
 	    /* Output results */
-	    for (uint32_t i = 0; i < AI_NETWORK_OUT_1_SIZE; i++)
-		{
-		printf("%8.2f ", aiOutData[i]);
-		}
-	    printf("\n");
-//	    uint32_t class = argmax(aiOutData, AI_NETWORK_OUT_1_SIZE);
-//	    printf(": %d - %s\r\n", (int) class, activities[class]);
+//	    for (uint32_t i = 0; i < AI_NETWORK_OUT_1_SIZE; i++)
+//		{
+//		printf("%8.2f ", aiOutData[i]);
+//		}
+//	    printf("\n");
+	    uint32_t class = argmax(aiOutData, AI_NETWORK_OUT_1_SIZE);
+	    printf(": %d - %s\r\n", (int) class, activities[class]);
 	    }
-
 	}
     }
 /* USER CODE END PV */
