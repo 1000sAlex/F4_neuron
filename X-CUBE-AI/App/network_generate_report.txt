@@ -1,6 +1,6 @@
 Neural Network Tools for STM32AI v1.4.1 (STM.ai v6.0.0-RC6)
-Created date       : 2021-07-08 22:50:28
-Parameters         : generate --name network -m C:/Users/u/PycharmProjects/acc_neuron/h5/model.h5 --type keras --compression 1 --verbosity 1 --workspace C:\Users\u\AppData\Local\Temp\mxAI_workspace1200223277021007151264365094214161 --output C:\Users\u\.stm32cubemx
+Created date       : 2021-07-11 15:40:28
+Parameters         : generate --name network -m C:/Users/u/PycharmProjects/acc_neuron/h5/model.h5 --type keras --compression 1 --verbosity 1 --workspace C:\Users\u\AppData\Local\Temp\mxAI_workspace182794954528100194250956107529647 --output C:\Users\u\.stm32cubemx
 
 Exec/report summary (generate)
 ------------------------------------------------------------------------------------------------------------------------
@@ -9,11 +9,11 @@ type               : keras
 c_name             : network
 compression        : None
 quantize           : None
-workspace dir      : C:\Users\u\AppData\Local\Temp\mxAI_workspace1200223277021007151264365094214161
+workspace dir      : C:\Users\u\AppData\Local\Temp\mxAI_workspace182794954528100194250956107529647
 output dir         : C:\Users\u\.stm32cubemx
 
 model_name         : model
-model_hash         : 711fa4b28b8e6676bc8db7760e385e2e
+model_hash         : 51d94420aa2128623b6aad59a2124f04
 input              : input_0 [78 items, 312 B, ai_float, FLOAT32, (26, 1, 3)]
 inputs (total)     : 312 B
 output             : dense_1_nl [4 items, 16 B, ai_float, FLOAT32, (1, 1, 4)]

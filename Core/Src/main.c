@@ -134,6 +134,18 @@ static uint32_t argmax(const float *values, uint32_t len)
 	}
     return max_index;
     }
+
+void make_data(float *in, float *out)
+    {
+    for (u16 i = AI_NETWORK_IN_1_SIZE; i >= 3; i--)
+	{
+	out[i] = out[i - 3];
+	}
+    for (u16 i = 0; i < 3; i++)
+	{
+	out[i] = in[i];
+	}
+    }
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -144,15 +156,17 @@ uint32_t write_index = 0;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     {
     static u8 start = 0;
+    float in_buf[3];
     if (GPIO_Pin == GPIO_PIN_0)
 	{
 	LIS3DSH_GetDataRaw(&raw);
 //	HAL_UART_Transmit(&huart2, (u8*) &raw, sizeof(raw), 0xFFFF);
 //	printf("% 5d, % 5d, % 5d\r\n", raw.x, raw.y, raw.z);
 	/* Note: window overlapping can be managed here */
-	aiInData[write_index + 0] = (float) raw.x / (1.7f * 4000.0f);
-	aiInData[write_index + 1] = (float) raw.y / (1.7f * 4000.0f);
-	aiInData[write_index + 2] = (float) raw.z / (1.7f * 4000.0f);
+	in_buf[0] = (float) raw.x / (1.7f * 4000.0f);
+	in_buf[1] = (float) raw.y / (1.7f * 4000.0f);
+	in_buf[2] = (float) raw.z / (1.7f * 4000.0f);
+	make_data(in_buf, aiInData);
 	write_index += 3;
 
 	if (write_index == AI_NETWORK_IN_1_SIZE)
@@ -167,13 +181,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	    AI_Run(aiInData, aiOutData);
 
 	    /* Output results */
-//	    for (uint32_t i = 0; i < AI_NETWORK_OUT_1_SIZE; i++)
-//		{
-//		printf("%8.2f ", aiOutData[i]);
-//		}
+	    for (uint32_t i = 0; i < AI_NETWORK_OUT_1_SIZE; i++)
+		{
+		printf("%8.2f ", aiOutData[i]);
+		}
 //	    printf("\n");
 	    uint32_t class = argmax(aiOutData, AI_NETWORK_OUT_1_SIZE);
-	    printf(": %d - %s\r\n", (int) class, activities[class]);
+	    printf(": %d - %s\n", (int) class, activities[class]);
 	    }
 	}
     }

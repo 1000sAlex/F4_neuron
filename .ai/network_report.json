@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 0,
     "_allocate_outputs": 0,
-    "cli_parameters": "generate --name network -m C:/Users/u/PycharmProjects/acc_neuron/h5/model.h5 --type keras --compression 1 --verbosity 1 --workspace C:\\Users\\u\\AppData\\Local\\Temp\\mxAI_workspace1200223277021007151264365094214161 --output C:\\Users\\u\\.stm32cubemx",
+    "cli_parameters": "generate --name network -m C:/Users/u/PycharmProjects/acc_neuron/h5/model.h5 --type keras --compression 1 --verbosity 1 --workspace C:\\Users\\u\\AppData\\Local\\Temp\\mxAI_workspace182794954528100194250956107529647 --output C:\\Users\\u\\.stm32cubemx",
     "cli_version": {
         "major": 1,
         "micro": 1,
@@ -12,12 +12,12 @@
         "factor": null,
         "layers": {}
     },
-    "date_time": "Thu Jul  8 22:50:28 2021",
+    "date_time": "Sun Jul 11 15:40:28 2021",
     "error": 0,
     "error_str": [],
     "exec_cmd": "generate",
     "exec_duration": 0.0,
-    "hash": "711fa4b28b8e6676bc8db7760e385e2e",
+    "hash": "51d94420aa2128623b6aad59a2124f04",
     "inputs": [
         "input_0"
     ],
